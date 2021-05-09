@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void StartGame(Data data[MAX_ENTRIES], char ChosenPhrase[], int size)
+int StartGame(Data data[MAX_ENTRIES], char ChosenPhrase[], int size)
 {
 	char DashPhrase[1000];
 	int i = 0;
@@ -36,8 +36,8 @@ void StartGame(Data data[MAX_ENTRIES], char ChosenPhrase[], int size)
 		printf("You entered an invalid choice.\nPlease reenter ");
 		scanf("%d", &Choice);
 	}
-
 	strcpy(ChosenPhrase, data[Choice - 1].song);
+	return Choice;
 }
 // void FormSentace(Data val, char line[1000])
 // {

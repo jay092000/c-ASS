@@ -6,10 +6,11 @@
 int main(int argc, char *argv[])
 {
     FILE *fptr;
-    char Phrase[MAX_INPUT], DashedPhrase[MAX_INPUT], UpperPhrase[MAX_INPUT];
-    int size;
+    char Phrase[MAX_INPUT], DashedPhrase[MAX_INPUT], UpperPhrase[MAX_INPUT], fileName[MAX_INPUT];
+    int size, choice;
     Data array[MAX_ENTRIES];
-    fptr = OpenFile(argc, argv);
+    fptr = OpenFile(argc, argv, fileName);
+    printf("%s", fileName);
     size = ReadFileIntoArry(fptr, array);
     Data finalData[size];
     for (int i = 0; i < size; i++)
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
         finalData[i] = array[i];
     }
 
-    StartGame(finalData, Phrase, size);
+    choice = StartGame(finalData, Phrase, size);
     printf("%s", Phrase);
     printf("Here's the phrase you need to guess\n");
     int s = 1;
@@ -54,7 +55,7 @@ int main(int argc, char *argv[])
         printf("The phrase was\n\n");
         printf("%s", Phrase);
         printf("\n\nYOU WIN!!!!\n");
-        RemoveEntryFromFile(finalData, Phrase, fptr);
+        RemoveEntryFromFile(fileName, choice, fptr);
         fclose(fptr);
     }
 }

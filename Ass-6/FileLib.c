@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-FILE *OpenFile(int argc, char *argv[])
+FILE *OpenFile(int argc, char *argv[], char fileNameq[])
 {
 	FILE *fptr;
 	fptr = fopen(argv[1], "r");
@@ -22,11 +22,12 @@ FILE *OpenFile(int argc, char *argv[])
 			}
 			else
 			{
+				strcpy(fileNameq, fileName);
 				return fptr;
 			}
 		}
 	}
-
+	strcpy(fileNameq, argv[1]);
 	return fptr;
 }
 
@@ -70,35 +71,29 @@ int ReadFileIntoArry(FILE *fptr, Data data[MAX_ENTRIES])
 	return row_count;
 }
 
-void RemoveEntryFromFile(Data *data, char *Phrase, FILE *fptr)
+void RemoveEntryFromFile(char filename[], int pos, FILE *fptr)
 {
-	int i = 0;
-	char buffer[1024];
-	int row_count = 0;
-	int field_count = 0;
-	int selected = 0;
+	FILE *fileptr2;
+	char ch;
+	int delete_line, temp = 1;
 
-	while (fgets(buffer, 1024, fptr))
+	rewind(fptr);
+	fileptr2 = fopen("replica.txt", "w");
+	ch = getc(fptr);
+	while (ch != EOF)
 	{
-		field_count = 0;
-		row_count++;
-		char *field = strtok(buffer, "|");
-		while (field)
+		ch = getc(fptr);
+		if (ch == '\n')
+			temp++;
+		//except the line to be deleted
+		if (temp != pos)
 		{
-
-			if (field_count == 1)
-			{
-				if (strcmp(field, Phrase) == 0)
-				{
-					selected = row_count;
-				}
-			}
-
-			field = strtok(NULL, "|");
-			field_count++;
+			//copy all lines in file replica.c
+			putc(ch, fileptr2);
 		}
-		i++;
 	}
-
-	printf("%d", selected);
+	fclose(fptr);
+	fclose(fileptr2);
+	remove(filename);
+	rename("replica.txt", filename);
 }

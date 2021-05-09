@@ -10,8 +10,8 @@ typedef struct data
    char album[100];
    char song[100];
 }Data;
-FILE *OpenFile(int argc, char *argv[]);
+FILE *OpenFile(int argc, char *argv[],char *fileName);
 int ReadFileIntoArry(FILE *,Data [15]);
-void RemoveEntryFromFile(Data *data,char *Phrase,FILE *);
+void RemoveEntryFromFile(char *fileName,int pos,FILE *);
 
 #endif
