@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "*.txt": "c"
+        "*.txt": "c",
+        "listlib.h": "c",
+        "stdlib.h": "c",
+        "filelib.h": "c"
     }
 }
