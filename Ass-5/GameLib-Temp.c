@@ -6,7 +6,7 @@
 
 void StartGame(char ChosenPhrase[MAX_INPUT])
 {
-	char DashPhrase[MAX_INPUT] = {0};
+	char DashPhrase[MAX_INPUT];
 	int i = 0;
 	int Choice = 0;
 
@@ -17,11 +17,8 @@ void StartGame(char ChosenPhrase[MAX_INPUT])
 
 	while (PhraseBank[i] != "")
 	{
-		printf("--IN while---");
 		CheckPhrase(PhraseBank[i]);
-		/* Call CheckPhrase with PhraseBank[i] */
-		/* Call DashIt with PhraseBank[i] and DashPhrase */
-		DashIt(PhraseBank[i],DashPhrase);
+		DashIt(PhraseBank[i], DashPhrase);
 		printf("%d.\t%s\n", i + 1, DashPhrase);
 		i++;
 	}
@@ -29,21 +26,21 @@ void StartGame(char ChosenPhrase[MAX_INPUT])
 	printf("\nEnter choice : ");
 	scanf("%d", &Choice);
 	getchar();
-
 	/* create a while condition that is true when Choice is less than 1 or greater than i */
+	while (Choice < 0 || PhraseBank[Choice] == NULL)
 	{
 		printf("You entered an invalid choice.\nPlease reenter ");
 		scanf("%d", &Choice);
 	}
 
 	/* copy the phrase from PhraseBank based on Choice into ChosenPhrase */
+	ChosenPhrase = PhraseBank[Choice];
 }
 
 void CheckPhrase(char *Phrase)
 {
 	/* Declare a char pointer named FindDash and initialize it to NULL */
 	char *FindDash = NULL;
-	printf("--%s---", Phrase);
 
 	FindDash = strchr(Phrase, '-');
 	/* call strchr() with Phrase and a dash and store the result in FindDash.  If that */
@@ -87,27 +84,20 @@ int GuessALetter(char Phrase[], char DashedPhrase[], char UpperPhrase[])
 	return FoundALetter;
 }
 
-void DashIt(char *Phrase, char DashPhrase[])
+void DashIt(char *Phrase, char DashPhrase[MAX_INPUT])
 {
 	char *ReplaceIt;
-	printf("--IN Dash---");
 
 	char Alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	int i = 0;
-
-	/* Put the uppercase version of Phrase into DashPhrase */
 	for (i = 0; i < strlen(Phrase); i++)
 	{
-		toupper(Phrase[i]);
-		DashPhrase[i] = Phrase[i];
+		DashPhrase[i] = toupper(Phrase[i]);
 	}
-	/* Call strpbrk() with DashPhrase and Alphabet and save the result in ReplaceIt */
 	ReplaceIt = strpbrk(DashPhrase, Alphabet);
 	while (ReplaceIt != NULL)
 	{
-		/* Dereference ReplaceIt and set it to a dash */
-		DashPhrase[ReplaceIt - Phrase] = '-';
-		/* Call strpbrk() again */
+		*ReplaceIt = '-';
 		ReplaceIt = strpbrk(DashPhrase, Alphabet);
 	}
 }

@@ -1,10 +1,11 @@
 #include "GameLib.h"
-
+#include <string.h>
 int main()
 {
-    char *Phrase[MAX_INPUT] = {0};
-    char DashedPhrase[MAX_INPUT] = {0};
-    char UpperPhrase[MAX_INPUT] = {0};
+    char Phrase[MAX_INPUT], DashedPhrase[MAX_INPUT], UpperPhrase[MAX_INPUT];
     int strike = 0;
     StartGame(Phrase);
+   
+    int i=0;
+  
 }
