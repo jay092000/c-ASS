@@ -69,17 +69,14 @@ void main()
         {
             printf("Invalid Input");
         }
-        printf("%s",token);
         to = atoi(token);
         token = strtok(NULL, ",");
         if (token== NULL)
         {
             printf("Invalid Input");
         }
-        printf("%s",token);
         count = atoi(token);
         
-        printf("%d %d %d \n", from, to, count);
         if (inputStr[0] == 'q' || inputStr[0] == 'Q')
         {
             break;
@@ -111,7 +108,7 @@ int check(int from, int to, int *count, int size, char inputStr)
 
         if (inputStr == 'H' || inputStr == 'h')
         {
-            if ((from + *count) > size)
+            if ((from + *count) > size )
             {
                 printf("That draw command is out of range");
                 return 0;

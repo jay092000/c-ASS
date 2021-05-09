@@ -123,9 +123,7 @@ int main(int argc, char *argv[])
             {
                 char *Dc = TempPointer->DrawCommand;
                 POINTS p = *DrawPoints(TempPointer->DrawCommand);
-                // printf("p=>%d %d %d %c %c\n", p.from, p.to, p.count, Dc[strlen(Dc) - 2],Dc[0]);
 
-                printf("%s\n", Dc);
                 DrawLine(Map, p.from, (p.to + (i * 7)), Dc[0], p.count, Dc[strlen(Dc) - 2]);
                 TempPointer = TempPointer->next_ptr;
             }

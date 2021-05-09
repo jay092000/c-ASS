@@ -40,7 +40,6 @@ int main(int argc, char *argv[])
         }
         if (r == 0)
         {
-            printf("\nStrike %d", (c + 1));
             c++;
         }
     } while (c < 3);
