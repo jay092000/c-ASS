@@ -28,10 +28,17 @@ int main(int argc, char *argv[])
     printf("\n\nPlease enter 1-3 letters: ");
     scanf(" %s", printData);
 
-    PrintMap(Map, 20);
+    // PrintMap(Map, 20);
     for (int i = 0; i < strlen(printData); i++)
     {
         printData[i] = toupper(printData[i]);
+        NODE *TempPointer = FirstNode;
+        char DC[50];
+        while (TempPointer != NULL)
+        {
+            TempPointer = FindLetter(TempPointer, printData[i], DC);
+            printf("%s\n", DC);
+        }
     }
     printf("%s", printData);
 }
