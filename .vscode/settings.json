@@ -4,6 +4,7 @@
         "listlib.h": "c",
         "stdlib.h": "c",
         "filelib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "array": "c"
     }
 }

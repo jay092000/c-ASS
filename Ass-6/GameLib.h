@@ -9,9 +9,10 @@
 #define MAX_INPUT 81
 #define STRIKES 3
 
-void StartGame(char ChosenPhrase[]);
-int GuessALetter(char Phrase[], char DashedPhrase[], char UpperPhrase[]);
+void StartGame(Data data[], char ChosenPhrase[],int size);
+char *FormSentace(char album[200], char singer[200], char year[200],char DashData[1000]);
 void DashIt(char *Phrase, char DashPhrase[]);
+int GuessALetter(char Phrase[], char DashedPhrase[], char UpperPhrase[]);
 void CheckPhrase(char *Phrase);
 
 #endif
