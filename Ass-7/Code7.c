@@ -4,9 +4,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 int main(int argc, char *argv[])
 {
-    NODE *FirstNode = NULL;
+    // NODE *FirstNode = NULL;
+    struct node *head = NULL;
+
     char Map[20][20];
     char printData[3];
     char Background = ' ';
@@ -15,7 +19,7 @@ int main(int argc, char *argv[])
         printf("Please Enter Valid File Name\n");
         return 0;
     }
-    ReadFileIntoLinkedList(OpenFile(argc, argv), &FirstNode);
+    ReadFileIntoLinkedList(OpenFile(argc, argv), &head);\
     printf("What is the background character? ");
     scanf(" %c", &Background);
     for (int j = 0; j < 20; j++)
@@ -25,20 +29,23 @@ int main(int argc, char *argv[])
             Map[j][k] = Background;
         }
     }
-    printf("\n\nPlease enter 1-3 letters: ");
+    printf("\nPlease enter 1-3 letters: ");
     scanf(" %s", printData);
 
     // PrintMap(Map, 20);
     for (int i = 0; i < strlen(printData); i++)
     {
         printData[i] = toupper(printData[i]);
-        NODE *TempPointer = FirstNode;
-        char DC[50];
+        struct node *TempPointer = head;
+        char *DC;
         while (TempPointer != NULL)
         {
             TempPointer = FindLetter(TempPointer, printData[i], DC);
-            printf("%s\n", DC);
+            if (TempPointer != NULL)
+            {
+                TempPointer = TempPointer->next_ptr;
+            }
         }
     }
-    printf("%s", printData);
+    printf("%s\n", printData);
 }

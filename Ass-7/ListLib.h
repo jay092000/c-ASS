@@ -18,5 +18,5 @@ NODE;
 
 void AddDrawCommandToList(char, char DC[], NODE**);
 NODE *FindLetter(NODE *LinkedListHead, char Letter, char DC[]);
-
+NODE *FindLetter1(NODE *LinkedListHead);
 #endif
