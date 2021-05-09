@@ -39,7 +39,7 @@ int check(int from, int to, int *count, int size, char inputStr)
         return 1;
     }
 }
-int DrawChars(char arr[][MAXMAPSIZE], char inputStr[])
+POINTS *DrawPoints(char inputStr[])
 {
     int from, to, count;
     char tempString[40];
@@ -69,22 +69,19 @@ int DrawChars(char arr[][MAXMAPSIZE], char inputStr[])
         printf("Invalid Input");
     }
     count = atoi(token);
-    if (inputStr[0] == 'q' || inputStr[0] == 'Q')
+    int temp = check(from, to, &count, MAXMAPSIZE, inputStr[0]);
+    if (temp == 1)
     {
-        return 0;
+        POINTS *pointsA = (POINTS *)malloc(sizeof(POINTS));
+        pointsA->count = count;
+        pointsA->from = from;
+        pointsA->to = to;
+        // DrawLine(arr, from, to, inputStr[0], count, a);
+        return pointsA;
     }
     else
     {
-        int temp = check(from, to, &count, MAXMAPSIZE, inputStr[0]);
-        if (temp == 1)
-        {
-            printf("%d %d %d \n%s \t %c", from, to, count,inputStr,inputStr[strlen(inputStr) - 1]);
-
-            DrawLine(arr, from, to, inputStr[0], count, inputStr[strlen(inputStr) - 1]);
-        }
-        else
-        {
-        }
+        return NULL;
     }
 }
 int main(int argc, char *argv[])
@@ -110,7 +107,6 @@ int main(int argc, char *argv[])
             Map[j][k] = Background;
         }
     }
-    PrintMap(Map, MAXMAPSIZE);
     printf("\nPlease enter 1-3 letters: ");
     scanf(" %s", printData);
 
@@ -125,7 +121,11 @@ int main(int argc, char *argv[])
             TempPointer = FindLetter(TempPointer, printData[i], DC);
             if (TempPointer != NULL)
             {
-                DrawChars(Map, TempPointer->DrawCommand);
+                char *Dc = TempPointer->DrawCommand;
+                POINTS p = *DrawPoints(TempPointer->DrawCommand);
+                // if()
+                // printf("%s",Dc);
+                // DrawLine(Map, p.from, (p.to + (i * 6)), Dc[0], p.count, Dc[strlen(Dc) - 2]);
                 TempPointer = TempPointer->next_ptr;
             }
         }

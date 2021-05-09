@@ -11,12 +11,18 @@
 typedef struct node
 {
     char Letter;
-	char *DrawCommand;
+    char *DrawCommand;
     struct node *next_ptr;
-} 
-NODE;
+} NODE;
 
-void AddDrawCommandToList(char, char DC[], NODE**);
+typedef struct points
+{
+    int to;
+    int from;
+    int count;
+} POINTS;
+
+void AddDrawCommandToList(char, char DC[], NODE **);
 NODE *FindLetter(NODE *LinkedListHead, char Letter, char DC[]);
 NODE *FindLetter1(NODE *LinkedListHead);
 #endif
