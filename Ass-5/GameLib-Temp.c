@@ -34,7 +34,7 @@ void StartGame(char ChosenPhrase[MAX_INPUT])
 	}
 
 	/* copy the phrase from PhraseBank based on Choice into ChosenPhrase */
-	ChosenPhrase = PhraseBank[Choice];
+	strcpy(ChosenPhrase, PhraseBank[Choice - 1]);
 }
 
 void CheckPhrase(char *Phrase)
@@ -54,7 +54,7 @@ void CheckPhrase(char *Phrase)
 	}
 }
 
-int GuessALetter(char Phrase[], char DashedPhrase[], char UpperPhrase[])
+int GuessALetter(char Phrase[MAX_INPUT], char DashedPhrase[MAX_INPUT], char UpperPhrase[MAX_INPUT])
 {
 	char Guess;
 	char *FindGuess = NULL;
@@ -67,7 +67,7 @@ int GuessALetter(char Phrase[], char DashedPhrase[], char UpperPhrase[])
 	scanf(" %c", &Guess);
 	getchar();
 
-	toupper(Guess);
+	Guess = toupper(Guess);
 
 	FindGuess = strchr(UpperPhraseCopy, Guess);
 
@@ -76,7 +76,7 @@ int GuessALetter(char Phrase[], char DashedPhrase[], char UpperPhrase[])
 		FoundALetter = 1;
 		DashedPhrase[FindGuess - UpperPhraseCopy] = Phrase[FindGuess - UpperPhraseCopy];
 		/* Dereference FindGuess and set it to a dash */
-		UpperPhraseCopy[FindGuess - DashedPhrase] = '-';
+		*FindGuess = '-';
 
 		FindGuess = strchr(UpperPhraseCopy, Guess);
 	}
