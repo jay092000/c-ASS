@@ -7,46 +7,35 @@
 void AddDrawCommandToList(char a, char DC[], NODE **aa)
 
 {
-	NODE *TempPtr, *NewNode;
+	NODE *TempPtr, *NewNode = NULL;
 	// printf("%c", (**aa).Letter);
-	if (*aa == NULL)
+	TempPtr = *aa;
+	while (TempPtr != NULL)
 	{
-
-		NewNode = (struct node *)malloc(sizeof(struct node));
-		// printf("It is Null");
-		// struct node CurrentNode;
-		NewNode->Letter = a;
-		NewNode->DrawCommand = DC;
-		NewNode->next_ptr = NULL;
-		*aa = NewNode;
-		// (**aa).next_ptr = &CurrentNode;
+		TempPtr = TempPtr->next_ptr;
 	}
-	else
-	{
-		// printf("%s",(*aa)->DrawCommand);
-		AddDrawCommandToList(a, DC, &(**aa).next_ptr);
-	}
-
-	/* declare pointers of type NODE named TempPtr and NewNode */
-
-	/* malloc a new node and assign the Letter and the DrawCommand (after mallocing memory for it) */
-
-	/* If the LinkedListHead is NULL, then give it the address of the new node */
-	/* Else traverse to the end of the linked list and add the new node */
+	NewNode = (struct node *)malloc(sizeof(struct node));
+	NewNode->Letter = toupper(a);
+	NewNode->DrawCommand = DC;
+	NewNode->next_ptr = NULL;
+	*aa = NewNode;
 }
 
 NODE *FindLetter(NODE *LinkedListHead, char Letter, char DC[])
 {
-	/* while traversing the linked list AND the Letter in the node is not the Letter passed in */
+	NODE *TempPtr = LinkedListHead;
+	while (TempPtr != NULL)
 	{
-		/* move TempPtr */
+		if (TempPtr->Letter == Letter)
+		{
+			break;
+		}
+		TempPtr = TempPtr->next_ptr;
+	}
+	if (TempPtr != NULL)
+	{
+		DC = TempPtr->DrawCommand;
 	}
 
-	// if (/* TempPtr is not NULL */)
-	{
-		/* copy the DrawCommand from the node into the passed in parameter */
-		/* return the next pointer stored in TempPtr */
-	}
-
-	/* return TempPtr */
+	return TempPtr;
 }

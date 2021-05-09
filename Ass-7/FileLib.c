@@ -18,12 +18,7 @@ void ReadFileIntoLinkedList(FILE *DCFile, NODE **LinkedListHead)
 }
 FILE *OpenFile(int argc, char *argv[])
 {
-	FILE *fptr;
-	if (argc < 2)
-	{
-		printf("Please Enter Valid File Name\n");
-		// return 0;
-	}
+	FILE *fptr = NULL;
 	fptr = fopen(argv[1], "r");
 	if (fptr == NULL)
 	{

@@ -1,11 +1,11 @@
-SRC1 = Code4.c
-SRC2 = DrawTool.c
+SRC1 = Code5.c
+SRC2 = GameLib.c
 
 OBJ1 = $(SRC1:.c=.o)
 OBJ2 = $(SRC2:.c=.o)
 EXE = $(SRC1:.c=.e)
 
-HFILES = DrawTool.h
+HFILES = GameLib.h
 
 CFLAGS = -g 
 

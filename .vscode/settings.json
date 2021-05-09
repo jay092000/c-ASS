@@ -3,6 +3,7 @@
         "*.txt": "c",
         "listlib.h": "c",
         "stdlib.h": "c",
-        "filelib.h": "c"
+        "filelib.h": "c",
+        "string.h": "c"
     }
 }
