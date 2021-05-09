@@ -49,7 +49,7 @@ void main()
         char inputStr[40];
         printf("\nEnter draw command (enter Q to quit)");
         scanf("%s", inputStr);
-        char tempString[40];
+        char tempString[40] ={0};
         i = 2;
         j = 0;
         while (inputStr[i + j] != ')')
@@ -69,13 +69,16 @@ void main()
         {
             printf("Invalid Input");
         }
+        printf("%s",token);
         to = atoi(token);
         token = strtok(NULL, ",");
         if (token== NULL)
         {
             printf("Invalid Input");
         }
+        printf("%s",token);
         count = atoi(token);
+        
         printf("%d %d %d \n", from, to, count);
         if (inputStr[0] == 'q' || inputStr[0] == 'Q')
         {

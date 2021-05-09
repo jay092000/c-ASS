@@ -42,7 +42,7 @@ int check(int from, int to, int *count, int size, char inputStr)
 POINTS *DrawPoints(char inputStr[])
 {
     int from, to, count;
-    char tempString[40];
+    char tempString[40] = {0};
     int i = 2;
     int j = 0;
     while (inputStr[i + j] != ')')
@@ -123,9 +123,10 @@ int main(int argc, char *argv[])
             {
                 char *Dc = TempPointer->DrawCommand;
                 POINTS p = *DrawPoints(TempPointer->DrawCommand);
-                // if()
-                // printf("%s",Dc);
-                // DrawLine(Map, p.from, (p.to + (i * 6)), Dc[0], p.count, Dc[strlen(Dc) - 2]);
+                // printf("p=>%d %d %d %c %c\n", p.from, p.to, p.count, Dc[strlen(Dc) - 2],Dc[0]);
+
+                printf("%s\n", Dc);
+                DrawLine(Map, p.from, (p.to + (i * 7)), Dc[0], p.count, Dc[strlen(Dc) - 2]);
                 TempPointer = TempPointer->next_ptr;
             }
         }
