@@ -12,7 +12,7 @@ void ReadFileIntoLinkedList(FILE *DCFile, NODE **LinkedListHead)
 	while (fgets(line, sizeof(line), DCFile))
 	{
 		char *firstchar = strtok(line, "|");
-		char *dc = strtok(NULL, "|");
+		char *dc = strdup(strtok(NULL, "|"));
 		AddDrawCommandToList(*firstchar, dc, LinkedListHead);
 	}
 }

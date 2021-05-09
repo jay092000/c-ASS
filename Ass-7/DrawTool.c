@@ -34,7 +34,7 @@ void InitializeMap(char Map[][MAXMAPSIZE], int *MyMapSize)
 void DrawLine(char Map[][MAXMAPSIZE], int from, int to, char LineType, int count, char mark)
 {
 	int j;
-	
+	printf("mark %c",mark);
 	if (LineType == 'H')     
 	{
 		for (j = 0; j < count; j++)
